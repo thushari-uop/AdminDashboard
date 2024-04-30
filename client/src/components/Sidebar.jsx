@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react'
 import FlexBetween from './FlexBetween';
 import profileImage from 'assets/20231206_121047.jpg';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from '@mui/material';
-import { AdminPanelSettingsOutlined, CalendarMonthOutlined, ChevronLeft, ChevronRightOutlined, Groups2Outlined, HomeOutlined, PointOfSaleOutlined, PublicOutlined, ReceiptLongOutlined, ShoppingCartOutlined, TodayOutlined, TrendingUpOutlined } from '@mui/icons-material';
+import { Box, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from '@mui/material';
+import { AdminPanelSettingsOutlined, CalendarMonthOutlined, ChevronLeft, ChevronRightOutlined, Groups2Outlined, HomeOutlined, PointOfSaleOutlined, PublicOutlined, ReceiptLongOutlined, SettingsOutlined, ShoppingCartOutlined, TodayOutlined, TrendingUpOutlined } from '@mui/icons-material';
 
-const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isNonMobile
+const Sidebar = ({user, drawerWidth, isSidebarOpen, setIsSidebarOpen, isNonMobile
 }) => {
 	const { pathname } = useLocation();
 	const [active, setActive] = useState("");
@@ -125,12 +125,12 @@ const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isNonMobile
 												navigate(`/${lcText}`);
 												setActive(lcText);
 												}} 
-                                            sx={{
-                                                backgroundColor:
-                                                    active === lcText ? theme.palette.secondary[300] : "transparent",
-                                                color: 
-                                                    active === lcText ? theme.palette.primary[600] : theme.palette.secondary[200],
-                                            }}
+													sx={{
+														backgroundColor:
+															active === lcText ? theme.palette.secondary[300] : "transparent",
+														color: 
+															active === lcText ? theme.palette.primary[600] : theme.palette.secondary[200],
+													}}
 											>
 												<ListItemIcon
 													sx={{
@@ -138,19 +138,41 @@ const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isNonMobile
 														color: 
 															active === lcText ? theme.palette.primary[600] : theme.palette.secondary[200],
 													}}>
-                                                        {icon}
-                                                </ListItemIcon>
-                                                <ListItemText primary={text}>
-                                                    {active === lcText && (
-                                                        <ChevronRightOutlined sx={{ml: "auto"}} />
-                                                    )}
-                                                </ListItemText>
+														{icon}
+														</ListItemIcon>
+														<ListItemText primary={text}>
+															{active === lcText && (
+																<ChevronRightOutlined sx={{ml: "auto"}} />
+															)}
+														</ListItemText>
 										</ListItemButton>
 									</ListItem>
 								)
 							})}
 						</List>
-					</Box>
+						</Box>
+
+						<Box position="relative" bottom=".2rem">
+							<Divider/>
+							<FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">
+								<Box
+									component="img"
+									alt='profile'
+									src={profileImage}
+									height="40px"
+									width="40px"
+									sx={{
+										objectFit: "cover",
+										borderRadius: "50%",
+									}}
+								/>
+									<Box textAlign="left"> 
+										<Typography fontWeight="bold" fontSize="0.9rem" sx={{color: theme.palette.secondary[100]}}>{user.name}</Typography>
+										<Typography fontSize="0.8rem" sx={{color: theme.palette.secondary[200]}}>{user.occupation}</Typography>
+									</Box>
+									<SettingsOutlined sx={{color: theme.palette.secondary[300], fontSize: "25px"}}/>
+							</FlexBetween>
+						</Box>
 				</Drawer>
 			)}
 		</Box>
