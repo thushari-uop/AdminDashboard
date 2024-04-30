@@ -20,6 +20,9 @@ dotenv.config();
 const app = express();
 app.use(express.json())
 app.use(helmet());
+app.use(helmet({
+    crossOriginEmbedderPolicy: { policy: 'require-corp' } // Invalid value causing the error
+  }));
 // app.use(helmet.crossOriginEmbedderPolicy({policy: "cross-origin"}));
 app.use(morgan("common"))
 // app.use(bodyParser.json());
@@ -44,6 +47,7 @@ Mongoose
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 
     // data add only one time
-    User.insertMany(dataUser);
+    // User.insertMany(dataUser);
+        //insertMany is Mongoose function used to insert multiple documents into a MongoDB collection in a single operation
 }).catch((error) => console.log(`${error} did not connect`))
 
