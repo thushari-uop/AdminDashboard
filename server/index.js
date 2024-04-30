@@ -13,7 +13,9 @@ import salesRoutes from "./routes/sales.js";
 
 //data importing
 import User from './models/User.js';
-import { dataUser } from './data/index.js';
+import Product from './models/Product.js';
+import ProductStat from './models/ProductStat.js';
+import { dataUser, dataProduct, dataProductStat } from './data/index.js';
 
 // CONFIGURATION
 dotenv.config();
@@ -48,6 +50,8 @@ Mongoose
 
     // data add only one time
     // User.insertMany(dataUser);
+    Product.insertMany(dataProduct);
+    ProductStat.insertMany(dataProductStat);
         //insertMany is Mongoose function used to insert multiple documents into a MongoDB collection in a single operation
 }).catch((error) => console.log(`${error} did not connect`))
 
