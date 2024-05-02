@@ -50,8 +50,8 @@ Mongoose
 
     // data add only one time
     // User.insertMany(dataUser);
-    Product.insertMany(dataProduct);
-    ProductStat.insertMany(dataProductStat);
-        //insertMany is Mongoose function used to insert multiple documents into a MongoDB collection in a single operation
+    // Product.insertMany(dataProduct);
+    // ProductStat.insertMany(dataProductStat);
+         //insertMany is Mongoose function used to insert multiple documents into a MongoDB collection in a single operation
 }).catch((error) => console.log(`${error} did not connect`))
 
