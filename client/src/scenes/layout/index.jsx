@@ -1,10 +1,10 @@
 import { Box, useMediaQuery } from '@mui/material';
 import Navbar from 'components/Navbar';
 import React, { useState } from 'react'
-import Dashboard from 'scenes/dashboard';
 import Sidebar from 'components/Sidebar';
 import { useSelector } from 'react-redux';
 import { useGetUserQuery } from 'state/api';
+import { Outlet } from 'react-router-dom';
  
 const Layout = () => {
 
@@ -29,7 +29,7 @@ const Layout = () => {
 						isSidebarOpen = {isSidebarOpen}
 						setIsSidebarOpen = {setIsSidebarOpen}
 					/>
-					<Dashboard/>
+					<Outlet/>
 				</Box>
 		</Box>
 	)
