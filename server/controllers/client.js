@@ -6,12 +6,14 @@ export const getProducts = async(req, res) => {
         const products = await Product.find();
 
         const productsWithStats = await Promise.all(
-            products.map(async (Product) => {
+            products.map(async (product) => {
                 //find product stat using perticular productId
-                const stat = await ProductStat.find({ productId: products._id})
+                const stat = await ProductStat.find({ 
+                    productId: product._id
+                })
                 return{
                     //return object of product information with combining stat
-                    ...products._doc,
+                    ...product._doc,
                     stat,
                 };
             })
